@@ -1,0 +1,14 @@
+query {
+  valueDomains (uuid: "{{ uuid }}") {
+    edges {
+      node {
+        uuid
+        name
+        definition
+        conceptualDomain {
+          name
+        }
+      }
+    }
+  }
+}

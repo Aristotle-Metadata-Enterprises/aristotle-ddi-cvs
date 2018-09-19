@@ -2,6 +2,13 @@
 const axios = require('axios')
 const url = 'http://checkip.amazonaws.com/';
 let response;
+const handlebars = require('handlebars')
+const fs = require('fs')
+const util = require('util')
+
+// Convert fs.readFile into Promise version of same    
+// Thanks to https://stackoverflow.com/a/46867579
+const readFile = util.promisify(fs.readFile);
 
 /**
  *
@@ -38,19 +45,26 @@ let response;
  * 
  */
 exports.lambdaHandler = async (event, context) => {
-    try {
-        const ret = await axios(url);
-        response = {
-            'statusCode': 200,
-            'body': JSON.stringify({
-                message: 'hello world',
-                location: ret.data.trim()
-            })
-        }
-    } catch (err) {
-        console.log(err);
-        return err;
-    }
 
-    return response
+  var uuid = "8404a14a-bbae-11e8-b33d-0242ac120005"
+
+  var query_template_string = await readFile('query_template.txt', {encoding: 'utf-8'})
+  var query_template = handlebars.compile(query_template_string)
+  var query = query_template({uuid: uuid})
+  
+  try {
+      //const ret = await axios(url);
+      response = {
+          'statusCode': 200,
+          'body': JSON.stringify({
+              query: query,
+              message: 'hello world',
+          })
+      }
+  } catch (err) {
+      console.log(err);
+      return err;
+  }
+
+  return response
 };
