@@ -52,16 +52,20 @@ exports.lambdaHandler = async (event, context) => {
   var query_template = handlebars.compile(query_template_string)
   var query = query_template({uuid: uuid})
   
+  var ddi_template_string = await readFile('ddi-template.xml', {encoding: 'utf-8'})
+  var template = handlebars.compile(ddi_template_string)
+  
   try {
       var url = baseurl + '&query=' + query
       const ret = await axios(url);
-      console.log(ret.data)
+      var context = ret.data.data.valueDomains.edges[0].node
+      
+      xml_response = template(context)
+      console.log(context)
+
       response = {
           'statusCode': 200,
-          'body': JSON.stringify({
-              query: query,
-              result: ret.data
-          })
+          'body': xml_response
       }
   } catch (err) {
       console.log(err);
