@@ -1,0 +1,19 @@
+{
+  "name": "ddi_transformer",
+  "version": "1.0.0",
+  "description": "ddi transformer",
+  "main": "src/index.js",
+  "repository": "https://github.com/Aristotle-Metadata-Enterprises/aristotle-ddi-cvs",
+  "author": "Harry White",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "scripts": {
+    "test": "mocha tests/unit/"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.1.1"
+  }
+}
