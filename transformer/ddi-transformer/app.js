@@ -1,6 +1,6 @@
 
 const axios = require('axios')
-const url = 'http://checkip.amazonaws.com/';
+const baseurl = 'https://ddi-alliance.aristotlecloud.io/api/graphql/api?raw=true';
 let response;
 const handlebars = require('handlebars')
 const fs = require('fs')
@@ -53,12 +53,14 @@ exports.lambdaHandler = async (event, context) => {
   var query = query_template({uuid: uuid})
   
   try {
-      //const ret = await axios(url);
+      var url = baseurl + '&query=' + query
+      const ret = await axios(url);
+      console.log(ret.data)
       response = {
           'statusCode': 200,
           'body': JSON.stringify({
               query: query,
-              message: 'hello world',
+              result: ret.data
           })
       }
   } catch (err) {
