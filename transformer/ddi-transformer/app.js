@@ -1,6 +1,6 @@
 
 const axios = require('axios')
-const baseurl = 'https://ddi-alliance.aristotlecloud.io/api/graphql/api?raw=true';
+const baseurl = 'https://ddi-alliance.aristotlecloud.io/api/graphql/api';
 let response;
 const handlebars = require('handlebars')
 const fs = require('fs')
@@ -56,12 +56,17 @@ exports.lambdaHandler = async (event, context) => {
   var template = handlebars.compile(ddi_template_string)
   
   try {
-      var url = baseurl + '&query=' + query
-      const ret = await axios(url);
+      params = {
+        params: {
+          raw: true,
+          query: query  
+        }
+      }
+
+      const ret = await axios(baseurl, params);
       var context = ret.data.data.valueDomains.edges[0].node
       
       xml_response = template(context)
-      console.log(context)
 
       response = {
           'statusCode': 200,
