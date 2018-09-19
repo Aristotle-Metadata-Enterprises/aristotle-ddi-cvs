@@ -104,4 +104,4 @@ venv.bak/
 .mypy_cache/
 
 # node_modules
-ddi-transformer/node_modules/*
+transformer/ddi-transformer/node_modules/*
