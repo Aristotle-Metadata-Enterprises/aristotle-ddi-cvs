@@ -50,7 +50,10 @@ exports.lambdaHandler = async (event, context) => {
 
   if (uuid === undefined) {
     console.log('No uuid provided')
-    return 'No uuid provided'
+    return {
+      statusCode: 404,
+      body: 'No uuid provided'
+    }
   }
 
   // Build graphql query
@@ -107,7 +110,10 @@ exports.lambdaHandler = async (event, context) => {
     ddi_template_string = await readFile('ddi-template.xml', {encoding: 'utf-8'})
   } catch(err) {
     console.log(err);
-    return err;
+    return {
+      statusCode: 404,
+      body: 'Not Found'
+    }
   }
 
   // Compile handlebars template
@@ -126,8 +132,11 @@ exports.lambdaHandler = async (event, context) => {
   try {
     result = await axios(baseurl, options);
   } catch (err) {
-    console.log(err);
-    return err;
+    console.log(err.message)
+    return {
+      statusCode: 404,
+      body: err.message
+    }
   }
 
   // Setup context
@@ -141,15 +150,14 @@ exports.lambdaHandler = async (event, context) => {
   context.conceptualDomain.slots = cdslots
 
   context.conceptualDomain.identifier = context.conceptualDomain.ConceptPtr.identifiers[0]
-	console.log(context)
   
   // Render template
   xml_response = template(context)
 
   // Return response
   response = {
-    'statusCode': 200,
-    'body': xml_response
+    statusCode: 200,
+    body: xml_response
   }
   return response
 };
