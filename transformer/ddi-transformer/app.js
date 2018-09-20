@@ -56,8 +56,10 @@ exports.lambdaHandler = async (event, context) => {
           uuid
           name
           definition
+          version
           conceptualDomain {
             name
+            comments
             ConceptPtr {
               slots {
                 edges {
@@ -67,6 +69,24 @@ exports.lambdaHandler = async (event, context) => {
                   }
                 }
               }
+              identifiers {
+                identifier
+                version
+              }
+            }
+          }
+          permissiblevalueSet {
+            value
+            valueMeaning {
+              name
+              definition
+            }
+          }
+          supplementaryvalueSet {
+            value
+            valueMeaning {
+              name
+              definition
             }
           }
         }

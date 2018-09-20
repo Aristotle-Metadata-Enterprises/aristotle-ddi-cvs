@@ -94,20 +94,22 @@ http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png
         </Key>
     </ColumnSet>
     <SimpleCodeList>
+        {{#each permissiblevalueSet}}
         <Row>
             <Value ColumnRef="Code">
-                <SimpleValue>ArithmeticMean</SimpleValue>
+                <SimpleValue>{{ this.value }}</SimpleValue>
             </Value>
             <Value ColumnRef="Term">
                 <ComplexValue>
-                    <ddi-cv:Value xml:lang="en-US">Arithmetic mean</ddi-cv:Value>
+                    <ddi-cv:Value xml:lang="en-US">{{ this.valueMeaning.name }}</ddi-cv:Value>
                 </ComplexValue>
             </Value>
             <Value ColumnRef="Definition">
                 <ComplexValue>
-                    <ddi-cv:Value xml:lang="en-US">Mathematical average of a set of values. The mean is calculated by adding up two or more values and dividing the total by their number. In social/political science, it is usually the sum of the measurements divided by the number of subjects, or cases.</ddi-cv:Value>
+                    <ddi-cv:Value xml:lang="en-US">{{ this.valueMeaning.definition }}</ddi-cv:Value>
                 </ComplexValue>
             </Value>
         </Row>
+        {{/each}}
     </SimpleCodeList>
 </gc:CodeList>
