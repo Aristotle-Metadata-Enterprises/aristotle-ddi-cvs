@@ -59,12 +59,12 @@ http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png
     <Identification>
         <ShortName>{{ conceptualDomain.slots.[Short Name] }}</ShortName>
         <LongName xml:lang="en-US">{{ name }}</LongName>
-        <Version>2.1</Version>
-        <CanonicalUri>urn:ddi-cv:SummaryStatisticType</CanonicalUri>
-        <CanonicalVersionUri>urn:ddi-cv:SummaryStatisticType:2.1</CanonicalVersionUri>
-        <LocationUri>http://www.ddialliance.org/Specification/DDI-CV/SummaryStatisticType_2.1_Genericode1.0_DDI-CVProfile1.0.xml</LocationUri>
-        <AlternateFormatLocationUri MimeType="text/html">http://www.ddialliance.org/Specification/DDI-CV/SummaryStatisticType_2.1.html</AlternateFormatLocationUri>
-        <AlternateFormatLocationUri MimeType="application/vnd.ms-excel">http://www.ddialliance.org/Specification/DDI-CV/SummaryStatisticType_2.1_InputSheet_Excel2003.xls</AlternateFormatLocationUri>
+        <Version>{{ version }}</Version>
+        <CanonicalUri>urn:ddi-cv:{{ conceptualDomain.identifier.identifier }}</CanonicalUri>
+        <CanonicalVersionUri>urn:ddi-cv:{{ conceptualDomain.identifier.identifier }}:{{ conceptualDomain.identifier.version }}</CanonicalVersionUri>
+        <LocationUri>{{ conceptualDomain.originUri }}</LocationUri>
+        <AlternateFormatLocationUri MimeType="text/html"></AlternateFormatLocationUri>
+        <AlternateFormatLocationUri MimeType="application/vnd.ms-excel"></AlternateFormatLocationUri>
         <Agency>
             <ShortName>DDI Alliance</ShortName>
             <LongName xml:lang="en-US">The Alliance for the Data Documentation Initiative</LongName>

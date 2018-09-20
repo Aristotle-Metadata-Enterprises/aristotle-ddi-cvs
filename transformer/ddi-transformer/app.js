@@ -60,6 +60,7 @@ exports.lambdaHandler = async (event, context) => {
           conceptualDomain {
             name
             comments
+            originUri
             ConceptPtr {
               slots {
                 edges {
@@ -128,11 +129,12 @@ exports.lambdaHandler = async (event, context) => {
 
   var cdslots = {}
   var edges = context.conceptualDomain.ConceptPtr.slots.edges
-  //console.log(edges)
   for (var edge of edges) {
     cdslots[edge.node.name] = edge.node.value
   }
   context.conceptualDomain.slots = cdslots
+
+  context.conceptualDomain.identifier = context.conceptualDomain.ConceptPtr.identifiers[0]
 	console.log(context)
   
   // Render template
