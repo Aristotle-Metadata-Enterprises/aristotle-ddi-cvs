@@ -46,7 +46,12 @@ const readFile = util.promisify(fs.readFile);
  */
 exports.lambdaHandler = async (event, context) => {
 
-  var uuid = "8404a14a-bbae-11e8-b33d-0242ac120005"
+  var uuid = event.pathParameters.uuid
+
+  if (uuid === undefined) {
+    console.log('No uuid provided')
+    return 'No uuid provided'
+  }
 
   // Build graphql query
   var query = `query {

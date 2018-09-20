@@ -8,7 +8,8 @@
     "foo": "bar"
   },
   "pathParameters": {
-    "proxy": "/path/to/resource"
+    "proxy": "/path/to/resource",
+    "uuid": "8404a14a-bbae-11e8-b33d-0242ac120005"
   },
   "stageVariables": {
     "baz": "qux"
