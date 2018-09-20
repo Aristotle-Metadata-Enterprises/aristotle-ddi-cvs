@@ -64,6 +64,7 @@ exports.lambdaHandler = async (event, context) => {
           version
           conceptualDomain {
             name
+            definition
             comments
             originUri
             ConceptPtr {

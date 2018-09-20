@@ -43,7 +43,7 @@ http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png
     <Annotation>
         <Description>
             <h:div xml:lang="en-US" class="Description">
-              <h:p>{{ definition }}</h:p>
+              <h:p>{{ conceptualDomain.definition }}</h:p>
             </h:div>
             <h:div xml:lang="en-US" class="VersionNotes">
                 <h:p></h:p>
