@@ -28,17 +28,3 @@ Resources:
                     Properties:
                         Path: /api/{uuid}
                         Method: get
-
-Outputs:
-
-    HelloWorldApi:
-      Description: "API Gateway endpoint URL for ddi transformer"
-      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-
-    HelloWorldFunction:
-      Description: "Transformer Function ARN"
-      Value: !GetAtt HelloWorldFunction.Arn
-
-    HelloWorldFunctionIamRole:
-      Description: "Implicit IAM Role created for Transformer function"
-      Value: !GetAtt HelloWorldFunctionRole.Arn
