@@ -48,34 +48,61 @@ exports.lambdaHandler = async (event, context) => {
 
   var uuid = "8404a14a-bbae-11e8-b33d-0242ac120005"
 
-  var query_template_string = await readFile('query_template.txt', {encoding: 'utf-8'})
-  var query_template = handlebars.compile(query_template_string)
-  var query = query_template({uuid: uuid})
-  
-  var ddi_template_string = await readFile('ddi-template.xml', {encoding: 'utf-8'})
-  var template = handlebars.compile(ddi_template_string)
-  
-  try {
-      params = {
-        params: {
-          raw: true,
-          query: query  
+  // Build graphql query
+  var query = `query {
+    valueDomains (uuid: "${uuid}") {
+      edges {
+        node {
+          uuid
+          name
+          definition
+          conceptualDomain {
+            name
+          }
         }
       }
+    }
+  }`
+  
+  // Read xml template file
+  var ddi_template_string
+  try {
+    ddi_template_string = await readFile('ddi-template.xml', {encoding: 'utf-8'})
+  } catch(err) {
+    console.log(err);
+    return err;
+  }
 
-      const ret = await axios(baseurl, params);
-      var context = ret.data.data.valueDomains.edges[0].node
-      
-      xml_response = template(context)
-
-      response = {
-          'statusCode': 200,
-          'body': xml_response
-      }
+  // Compile handlebars template
+  var template = handlebars.compile(ddi_template_string)
+  
+  // axios options
+  var options = {
+    params: {
+      raw: true,
+      query: query  
+    }
+  }
+  
+  // Perform graphql query
+  var result
+  try {
+      result = await axios(baseurl, options);
   } catch (err) {
       console.log(err);
       return err;
   }
 
+  // Setup context
+  var context = result.data.data.valueDomains.edges[0].node
+  
+  // Render template
+  xml_response = template(context)
+
+  // Return response
+  response = {
+      'statusCode': 200,
+      'body': xml_response
+  }
   return response
 };
