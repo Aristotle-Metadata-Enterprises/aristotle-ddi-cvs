@@ -46,25 +46,10 @@ http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png
               <h:p>{{ definition }}</h:p>
             </h:div>
             <h:div xml:lang="en-US" class="VersionNotes">
-                <h:p>The definitions for "Standard error of the mean", "Median", and "Standard deviation" were edited for clarity.
-                    Symbols were removed from those terms that had them, for consistency (symbols were not available for all terms). Edited terms are listed in "Version Changes".
- 			</h:p>
-	                </h:div>
-	                <h:div xml:lang="en-US" class="VersionChanges">
-	                    <h:p>DEFINITION REPHRASED:
-	                        StandardErrorOfMean;
-	                        Median;
-	                        StandardDeviation.
-	                        TERM REPHRASED:
-	                        ArithmeticMean;
-	                        Mode;
-	                        Median;
-	                        Variance;
-	                        StandardDeviation;
-	                        CoefficientOfVariation;
-	                        AverageAbsoluteDeviation;
-	                        MedianAbsoluteDeviation.
-	    	</h:p>
+              <h:p>Version Notes</h:p>
+            </h:div>
+            <h:div xml:lang="en-US" class="VersionChanges">
+                <h:p>Version Changes</h:p>
             </h:div>
             <h:div class="Usage">
                 <h:div class="DDI3.2">
@@ -74,7 +59,7 @@ http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png
                         </h:p>
                     </h:div>
                     <h:div class="Notes">
-                        <h:p>A classification of the type of summary statistic provided. Supports the use of an external controlled vocabulary. DDI strongly recommends the use of a widely shared controlled vocabulary to support interoperability.</h:p>
+                        <h:p>Notes</h:p>
                     </h:div>
                     <h:table class="UsageDetails">
                         <h:thead>
@@ -100,8 +85,7 @@ http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png
                         </h:p>
                     </h:div>
                     <h:div class="Notes">
-                        <h:p>This vocabulary cannot be used for the element sumStat (4.3.14) in DDI 2.1, because this element already comes with a hard-coded controlled vocabulary in the "type" attribute. For using in DDI 2.5, select value "other" in the "type" attribute, and insert the appropriate value from the external CV in the "otherType" attribute. Use the complex element controlledVocabUsed (in the docDscr section) to identify the controlled vocabulary to which the selected term belongs.
-			</h:p>
+                      <h:p>Notes</h:p>
                     </h:div>
                     <h:table class="UsageDetails">
                         <h:thead>
@@ -123,17 +107,17 @@ http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png
             </h:div>
         </Description>
         <AppInfo>
-            <ddi-cv:Value key="LicenseName">Creative Commons Attribution 4.0 International</ddi-cv:Value>
-            <ddi-cv:Value key="LicenseUrl">http://creativecommons.org/licenses/by/4.0/</ddi-cv:Value>
-            <ddi-cv:Value key="LicenseLogoUrl">http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png</ddi-cv:Value>
-            <ddi-cv:Value key="CopyrightText">Copyright ©</ddi-cv:Value>
-            <ddi-cv:Value key="CopyrightOwner">DDI Alliance</ddi-cv:Value>
-            <ddi-cv:Value key="CopyrightOwnerUrl">http://www.ddialliance.org/</ddi-cv:Value>
-            <ddi-cv:Value key="CopyrightYear">2017</ddi-cv:Value>
+            <ddi-cv:Value key="LicenseName">{{ conceptualDomain.slots.LicenseName }}</ddi-cv:Value>
+            <ddi-cv:Value key="LicenseUrl">{{ conceptualDomain.slots.LicenseUrl }}</ddi-cv:Value>
+            <ddi-cv:Value key="LicenseLogoUrl">{{ conceptualDomain.slots.LicenseLogoUrl }}</ddi-cv:Value>
+            <ddi-cv:Value key="CopyrightText">{{ conceptualDomain.slots.CopyrightText }}</ddi-cv:Value>
+            <ddi-cv:Value key="CopyrightOwner">{{ conceptualDomain.slots.CopyrightOwner }}<ddi-cv:Value>
+            <ddi-cv:Value key="CopyrightOwnerUrl">{{ conceptualDomain.slots.CopyrightOwnerUrl }}</ddi-cv:Value>
+            <ddi-cv:Value key="CopyrightYear">{{ conceptualDomain.slots.CopyrightYear }}</ddi-cv:Value>
         </AppInfo>
     </Annotation>
     <Identification>
-        <ShortName>SummaryStatisticType</ShortName>
+        <ShortName>{{ conceptualDomain.slots.[Short Name] }}</ShortName>
         <LongName xml:lang="en-US">{{ name }}</LongName>
         <Version>2.1</Version>
         <CanonicalUri>urn:ddi-cv:SummaryStatisticType</CanonicalUri>

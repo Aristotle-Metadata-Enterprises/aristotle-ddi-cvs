@@ -97,10 +97,10 @@ exports.lambdaHandler = async (event, context) => {
   // Perform graphql query
   var result
   try {
-      result = await axios(baseurl, options);
+    result = await axios(baseurl, options);
   } catch (err) {
-      console.log(err);
-      return err;
+    console.log(err);
+    return err;
   }
 
   // Setup context
@@ -113,14 +113,15 @@ exports.lambdaHandler = async (event, context) => {
     cdslots[edge.node.name] = edge.node.value
   }
   context.conceptualDomain.slots = cdslots
+	console.log(context)
   
   // Render template
   xml_response = template(context)
 
   // Return response
   response = {
-      'statusCode': 200,
-      'body': 'xml_response'
+    'statusCode': 200,
+    'body': xml_response
   }
   return response
 };
