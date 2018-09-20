@@ -58,6 +58,16 @@ exports.lambdaHandler = async (event, context) => {
           definition
           conceptualDomain {
             name
+            ConceptPtr {
+              slots {
+                edges {
+                  node {
+                    name
+                    value
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -95,6 +105,14 @@ exports.lambdaHandler = async (event, context) => {
 
   // Setup context
   var context = result.data.data.valueDomains.edges[0].node
+
+  var cdslots = {}
+  var edges = context.conceptualDomain.ConceptPtr.slots.edges
+  //console.log(edges)
+  for (var edge of edges) {
+    cdslots[edge.node.name] = edge.node.value
+  }
+  context.conceptualDomain.slots = cdslots
   
   // Render template
   xml_response = template(context)
@@ -102,7 +120,7 @@ exports.lambdaHandler = async (event, context) => {
   // Return response
   response = {
       'statusCode': 200,
-      'body': xml_response
+      'body': 'xml_response'
   }
   return response
 };
