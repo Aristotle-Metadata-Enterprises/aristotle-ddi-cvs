@@ -45,6 +45,15 @@ http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png
             <h:div xml:lang="en-US" class="Description">
               <h:p>{{ definition }}</h:p>
             </h:div>
+            <h:div xml:lang="en-US" class="VersionNotes">
+                <h:p></h:p>
+            </h:div>
+            <h:div xml:lang="en-US" class="VersionChanges">
+                <h:p></h:p>
+            </h:div>
+            <h:div class="Usage">
+              <![CDATA[{{ conceptualDomain.comments }}]]>
+            </h:div>
         </Description>
         <AppInfo>
             <ddi-cv:Value key="LicenseName">{{ conceptualDomain.slots.LicenseName }}</ddi-cv:Value>
