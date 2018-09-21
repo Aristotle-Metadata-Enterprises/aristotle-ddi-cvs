@@ -3,21 +3,19 @@
 const app = require('../../app.js');
 const chai = require('chai');
 const expect = chai.expect;
-var event, context;
-
+var context;
+var event = {
+  pathParameters: {
+    uuid: "8404a14a-bbae-11e8-b33d-0242ac120005"
+  }
+}
 
 describe('Tests index', function () {
     it('verifies successful response', async () => {
-        const result = await app.lambda_handler(event, context, (err, result) => {
+        const result = await app.lambdaHandler(event, context, (err, result) => {
             expect(result).to.be.an('object');
             expect(result.statusCode).to.equal(200);
             expect(result.body).to.be.an('string');
-
-            let response = JSON.parse(result.body);
-
-            expect(response).to.be.an('object');
-            expect(response.message).to.be.equal("hello world");
-            expect(response.location).to.be.an("string");
         });
     });
 });
