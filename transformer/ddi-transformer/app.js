@@ -6,7 +6,7 @@ const util = require('util')
 const baseurl = 'https://ddi-alliance.aristotlecloud.io/api/graphql/api';
 const uuid_regex = new RegExp('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$')
 
-// Convert fs.readFile into Promise version of same    
+// Convert fs.readFile into Promise version   
 // Thanks to https://stackoverflow.com/a/46867579
 const readFile = util.promisify(fs.readFile);
 
